@@ -1,1 +1,4 @@
-<p>crud works!</p>
+<div class="row p-2">
+    <button type="button" class="btn btn-outline-success delete">Add</button>
+</div>
+<table datatable class="table table-bordered table-hover" [dtOptions]="dtOptions" *ngIf="isDTLoaded"></table>
