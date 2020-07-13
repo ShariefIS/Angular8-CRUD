@@ -1,4 +1,29 @@
 <div class="row p-2">
-    <button type="button" class="btn btn-outline-success delete">Add</button>
+    <button type="button" class="btn btn-outline-success delete" (click)="onAddingItem()"
+        *ngIf="isDTLoaded">Add</button>
 </div>
-<table datatable class="table table-bordered table-hover" [dtOptions]="dtOptions" *ngIf="isDTLoaded"></table>
+<div class="page-loader-wrapper" *ngIf="!isDTLoaded && !displayCrud">
+    <div class="big-loader text-center"></div>
+</div>
+<table datatable class="table table-bordered table-hover" [dtOptions]="dtOptions" *ngIf="isDTLoaded">
+</table>
+<div class="row justify-content-center p-3" *ngIf="displayCrud">
+    <form class="w-75" [formGroup]="crudForm" (ngSubmit)="onSubmit()">
+        <h2>{{mode}} Item</h2>
+        <div class="form-group form-row">
+            <div class="col-md-6" *ngFor="let prop of columnProperties">
+                <label for="exampleInputEmail1">{{prop.displayName}}</label>
+                <div class="mb-2" [ngSwitch]="prop.format">
+                    <input class="form-control" *ngSwitchCase="'number'" type="number" formControlName="{{prop.name}}">
+                    <input class="form-control" *ngSwitchCase="'amount'" type="number" formControlName="{{prop.name}}">
+                    <input class="form-control" *ngSwitchCase="'text'" type="text" formControlName="{{prop.name}}">
+                    <input class="form-control" *ngSwitchDefault type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-row flex-row-reverse">
+            <button type="submit" class="btn m-2 btn-primary">Submit</button>
+            <button type="button" (click)="onCancel()" class="btn m-2 btn-secondary">Cancel</button>
+        </div>
+    </form>
+</div>

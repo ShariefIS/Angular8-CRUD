@@ -5,8 +5,6 @@ import { CrudDetailComponent } from './crud/crud-detail/crud-detail.component';
 
 
 const routes: Routes = [
-  { path: 'crud', component: CrudComponent },
-  { path: 'crud/:id', component: CrudDetailComponent }
 ];
 
 @NgModule({
