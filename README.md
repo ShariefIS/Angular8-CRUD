@@ -70,9 +70,14 @@ dataTableOptions: {
       pagingType: 'full_numbers'
     },
 ```
-2. Edit/Add implemented on the same component with dynamic FormControls added both on Code and HTML. Need to pass **Id** as the main param in *GET* for Editing and Adding.
+2. Edit/Add implemented on the same component with dynamic FormControls added both on Code and HTML. Need to pass **id** as the main param in *GET* for Editing and Adding.
 3. Delete and Edit fired from DataTable Action Column.
 4. [Sweet Alerts](https://sweetalert2.github.io/) on Save and Delete (with Confirmation).
-
-
-Please make sure to update tests as appropriate.
+5. Custom events/function can be passed into the option's **events** configurations which will be executed once the Edit, Add and Delete is done.
+```javascript
+events: {
+      edited: this.onEdited,
+      added: this.onAdded,
+      deleted: this.onDeleted,
+    }
+```
